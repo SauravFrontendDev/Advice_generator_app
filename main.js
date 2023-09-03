@@ -1,23 +1,14 @@
-const adviceText = document.getElementById("adviceText");
-const adviceID = document.getElementById("adviceID");
-const shuffle = document.getElementById("shuffle");
+let quotes;
+// Get Quotes Array from Api
 
-let quote = "";
-
-const getQuote = async () => {
-  const ADVICEURL = "https://api.adviceslip.com/advice";
+async function getQuotes() {
+  const APIURL = "https://type.fit/api/quotes";
 
   try {
-    const result = await fetch(ADVICEURL);
-    quote = await result.json();
+    const response = await fetch(APIURL);
+    quotes = await response.json();
+    console.log(quotes);
   } catch (error) {
     console.log(error);
-    1;
-  } finally {
-    adviceText.textContent = quote["slip"].advice;
-    adviceID.textContent = `#${quote["slip"].id}`;
   }
-};
-
-getQuote();
-shuffle.addEventListener("click", getQuote);
+}
